@@ -13,18 +13,18 @@ const cardImages = [
 
 function App() {
 
-  const [cards, setCards] = useState([])
-  const [turns, setTurns] = useState(0)
-  const [choiceOne, setChoiceOne] = useState(null)
-  const [choiceTwo, setChoiceTwo] = useState(null)
-  const [disabled, setDisabled] = useState(false)
-  const [hideButton, setHideButton] = useState(false)
-  const [matchQuantity, setMatchQuantity] = useState(0)
-  const [chosenNumber, setChosenNumber] = useState(0)
-  const [countdown, setCountdown] = useState(-1)
-  const [isCount, setIsCount] = useState(false)
-  const [gameOver, setGameOver] = useState(false)
-  const [isWin, setIsWin] = useState(false)
+  const [cards, setCards] = useState([]) //self explanatory
+  const [turns, setTurns] = useState(0) //counts the turns, but is unused
+  const [choiceOne, setChoiceOne] = useState(null) //first choice of card
+  const [choiceTwo, setChoiceTwo] = useState(null) // second choice of card
+  const [disabled, setDisabled] = useState(false) //disables clicking when 1 card is chosen
+  const [hideButton, setHideButton] = useState(false) //hides the button when game is started
+  const [matchQuantity, setMatchQuantity] = useState(0) //if matchQuantity equals to 5. you win...
+  const [chosenNumber, setChosenNumber] = useState(0) //mode choice of the game
+  const [countdown, setCountdown] = useState(-1) //countdown state
+  const [isCount, setIsCount] = useState(false) //show countdown
+  const [gameOver, setGameOver] = useState(false) // condition for when a player loses the game
+  const [isWin, setIsWin] = useState(false) //condition for when a player wins the game
 
 
   //shuffled cards
@@ -85,6 +85,7 @@ function App() {
           })
         })
         setMatchQuantity(prevQuantity => prevQuantity + 1)
+        // * winning condition
         if (matchQuantity === 5) {
           setIsWin(true)
           setCountdown(-1)
