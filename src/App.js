@@ -24,6 +24,7 @@ function App() {
   const [countdown, setCountdown] = useState(-1)
   const [isCount, setIsCount] = useState(false)
   const [gameOver, setGameOver] = useState(false)
+  const [isWin, setIsWin] = useState(false)
 
 
   //shuffled cards
@@ -37,6 +38,7 @@ function App() {
     setCards(shuffledCards)
     setTurns(0)
     setHideButton(true)
+    setIsWin(false)
   }
 
 
@@ -84,7 +86,11 @@ function App() {
         })
         setMatchQuantity(prevQuantity => prevQuantity + 1)
         if (matchQuantity === 5) {
-          setTimeout(() => setHideButton(false), 3000)
+          setIsWin(true)
+          setCountdown(-1)
+          setIsCount(false)
+          setTimeout(() => {setHideButton(false)}, 3000)
+
         }
         resetTurn()
       }
@@ -131,10 +137,14 @@ function App() {
       <div className={`${isCount ? 'flex' : 'hidden'} justify-center`}>
         <div className="text-4xl text-blue-500 text-center my-5 px-10 py-2 rounded-xl bg-white">{countdown}</div>
       </div>
-      <div className={`${gameOver ? 'flex' : 'hidden'} justify-center text-white text-4xl`}>
+      <div className={`${gameOver && isWin ===false ? 'flex' : 'hidden'} justify-center text-white text-4xl`}>
         <div className="bg-black px-10 py-3 my-4 rounded-lg">Game Over</div>
       </div>
-
+      <div className={`${isWin ? 'flex' : 'hidden'} justify-center text-white text-4xl `}>
+        <div className= "bg-black px-10 py-3 my-4 rounded-lg">
+          You Win
+        </div>
+      </div>
       <div className={`${chosenNumber === 1 ? 'grid-cols-4' : chosenNumber === 2 ? 'grid-cols-5' : chosenNumber === 3 ? 'grid-cols-6' : 'hidden'} container mt-10 px-48 mx-auto place-items-center grid grid-cols-4 gap-5`}>
         {cards.map((card) => (
           <Card
