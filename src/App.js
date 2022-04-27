@@ -151,7 +151,7 @@ function App() {
           You Win
         </div>
       </div>
-      <div className={`${chosenNumber === 1 ? 'grid-cols-4' : chosenNumber === 2 ? 'grid-cols-5' : chosenNumber === 3 ? 'grid-cols-6' : 'hidden'} container mt-10 px-48 mx-auto place-items-center grid grid-cols-4 gap-5`}>
+      <div className={`${chosenNumber === 1 ? 'grid-cols-4 px-48' : chosenNumber === 2 ? 'grid-cols-5 px-48' : chosenNumber === 3 ? 'grid-cols-6 px-32' : 'hidden'} container mt-10  mx-auto place-items-center grid grid-cols-4 gap-5`}>
         {cards.map((card) => (
           <Card
             key={card.id}
