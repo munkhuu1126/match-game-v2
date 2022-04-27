@@ -32,8 +32,9 @@ function App() {
     const shuffledCards = [...cardImages, ...cardImages]
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }))
-    
+
     setGameOver(false)
+    setCountdown(0)
     setIsCount(true)
     setCards(shuffledCards)
     setTurns(0)
@@ -44,25 +45,28 @@ function App() {
 
   //4x4
   const fourByFour = () => {
-    setCountdown(100)
+
     setChosenNumber(1)
     shuffleCards()
+    setCountdown(100)
   }
 
 
   //6x6
   const sixBySix = () => {
-    setCountdown(200)
+
     setChosenNumber(2)
     shuffleCards()
+    setCountdown(200)
   }
 
 
   //6x4
   const sixByFour = () => {
-    setCountdown(150)
+
     setChosenNumber(3)
     shuffleCards()
+    setCountdown(150)
   }
 
   //handle choice
@@ -85,12 +89,12 @@ function App() {
           })
         })
         setMatchQuantity(prevQuantity => prevQuantity + 1)
-        // * winning condition
-        if (matchQuantity === 5) {
+        if (matchQuantity === cardImages.length - 1) {
           setIsWin(true)
           setCountdown(-1)
           setIsCount(false)
-          setTimeout(() => {setHideButton(false)}, 3000)
+          setMatchQuantity(0)
+          setTimeout(() => { setHideButton(false) }, 3000)
 
         }
         resetTurn()
@@ -100,19 +104,20 @@ function App() {
 
       }
     }
-  }, [choiceOne, choiceTwo])
+  }, [choiceOne, choiceTwo, countdown, matchQuantity])
 
 
   useEffect(() => {
-    countdown > -1 && setTimeout(() => setCountdown(countdown - 1), 1000)
-    if(countdown === 0){
-      setHideButton(false)
-      setIsCount(false)
-      setGameOver(true)
-      setChosenNumber(0)
+    if (!isWin) {
+      countdown > -1 && setTimeout(() => setCountdown(countdown - 1), 1000)
+      if (countdown === 0) {
+        setHideButton(false)
+        setIsCount(false)
+        setGameOver(true)
+        setChosenNumber(0)
+      }
     }
-  }, [countdown])
-
+  }, [countdown, isWin])
 
 
 
@@ -138,11 +143,11 @@ function App() {
       <div className={`${isCount ? 'flex' : 'hidden'} justify-center`}>
         <div className="text-4xl text-blue-500 text-center my-5 px-10 py-2 rounded-xl bg-white">{countdown}</div>
       </div>
-      <div className={`${gameOver && isWin ===false ? 'flex' : 'hidden'} justify-center text-white text-4xl`}>
+      <div className={`${gameOver && isWin === false ? 'flex' : 'hidden'} justify-center text-white text-4xl`}>
         <div className="bg-black px-10 py-3 my-4 rounded-lg">Game Over</div>
       </div>
       <div className={`${isWin ? 'flex' : 'hidden'} justify-center text-white text-4xl `}>
-        <div className= "bg-black px-10 py-3 my-4 rounded-lg">
+        <div className="bg-black px-10 py-3 my-4 rounded-lg">
           You Win
         </div>
       </div>
