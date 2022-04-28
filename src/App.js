@@ -196,9 +196,9 @@ function App() {
     setDisabled(false)
   }
   return (
-    <div className="App mx-auto my-20">
+    <div className="App mx-auto min-h-[100vh]">
       <div className="space-y-5">
-        <div className="flex justify-center ">
+        <div className="flex justify-center mt-5 ">
           <h1 className="text-white bg-red-500 p-5 rounded-lg font-bold text-4xl text-center">Match Game</h1>
         </div>
         <div className={`${hideButton ? 'hidden' : 'block'} space-x-10 flex justify-center`}>
@@ -210,12 +210,12 @@ function App() {
           <button
             onClick={sixBySix}
             className={` text-white hover:text-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>
-            6x6 75sec
+            6x6 150sec
           </button>
           <button
             onClick={sixByFour}
             className={` text-white hover:text-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>
-            6x6 100sec
+            6x4 100sec
           </button>
         </div>
       </div>
@@ -230,7 +230,7 @@ function App() {
           You Win
         </div>
       </div>
-      <div className={`${chosenNumber === 1 ? 'grid-cols-4 px-48' : chosenNumber === 2 ? 'grid-cols-6 px-24' : chosenNumber === 3 ? 'grid-cols-6 px-24' : 'hidden'} container mt-10  mx-auto place-items-center grid grid-cols-4 gap-5`}>
+      <div className={`${chosenNumber === 1 ? 'grid-cols-4 px-96' : chosenNumber === 2 ? 'grid-cols-6 px-72' : chosenNumber === 3 ? 'grid-cols-6 px-72' : 'hidden'} container mt-10  mx-auto place-items-center grid grid-cols-4 gap-5`}>
         {cards.map((card) => (
           <Card
             key={card.id}
