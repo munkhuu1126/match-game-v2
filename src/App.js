@@ -3,13 +3,50 @@ import './App.css';
 import Card from './components/Card';
 
 const cardImages = [
-  { "src": "/img/helmet-1.png", matched: false },
-  { "src": "/img/potion-1.png", matched: false },
-  { "src": "/img/ring-1.png", matched: false },
-  { "src": "/img/scroll-1.png", matched: false },
-  { "src": "/img/shield-1.png", matched: false },
-  { "src": "/img/sword-1.png", matched: false },
+  { "src": "/img/ihc.png", matched: false },
+  { "src": "/img/ardcoin.png", matched: false },
+  { "src": "/img/mont.png", matched: false },
+  { "src": "/img/eth.png", matched: false },
+  { "src": "/img/mongolnft.jpeg", matched: false },
+  { "src": "/img/bitcoin.png", matched: false },
 ]
+const cardImages1 = [
+  { "src": "/img/ihc.png", matched: false },
+  { "src": "/img/ardcoin.png", matched: false },
+  { "src": "/img/mont.png", matched: false },
+  { "src": "/img/eth.png", matched: false },
+  { "src": "/img/mongolnft.jpeg", matched: false },
+  { "src": "/img/bitcoin.png", matched: false },
+  { "src": "/img/maker.png", matched: false },
+  { "src": "/img/apecoin.png", matched: false },
+  { "src": "/img/luna.png", matched: false },
+  { "src": "/img/solana.png", matched: false },
+  { "src": "/img/polka.png", matched: false },
+  { "src": "/img/doge.png", matched: false },
+]
+const cardImages2 = [
+  { "src": "/img/ihc.png", matched: false },
+  { "src": "/img/ardcoin.png", matched: false },
+  { "src": "/img/mont.png", matched: false },
+  { "src": "/img/eth.png", matched: false },
+  { "src": "/img/mongolnft.jpeg", matched: false },
+  { "src": "/img/bitcoin.png", matched: false },
+  { "src": "/img/maker.png", matched: false },
+  { "src": "/img/apecoin.png", matched: false },
+  { "src": "/img/luna.png", matched: false },
+  { "src": "/img/solana.png", matched: false },
+  { "src": "/img/polka.png", matched: false },
+  { "src": "/img/doge.png", matched: false },
+  { "src": "/img/tusd.png", matched: false },
+  { "src": "/img/xrp.png", matched: false },
+  { "src": "/img/bnb.png", matched: false },
+  { "src": "/img/busd.png", matched: false },
+  { "src": "/img/stellar.png", matched: false },
+  { "src": "/img/avalanche.png", matched: false },
+
+]
+
+// ! fix card selection
 
 function App() {
 
@@ -25,6 +62,7 @@ function App() {
   const [isCount, setIsCount] = useState(false) //show countdown
   const [gameOver, setGameOver] = useState(false) // condition for when a player loses the game
   const [isWin, setIsWin] = useState(false) //condition for when a player wins the game
+  const [chosenCards, setChosenCards] = useState([])
 
 
   //shuffled cards
@@ -33,6 +71,35 @@ function App() {
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }))
 
+    setChosenCards(cardImages)
+    setGameOver(false)
+    setCountdown(0)
+    setIsCount(true)
+    setCards(shuffledCards)
+    setTurns(0)
+    setHideButton(true)
+    setIsWin(false)
+  }
+  const shuffleCards1 = () => {
+    const shuffledCards = [...cardImages1, ...cardImages1,]
+      .sort(() => Math.random() - 0.5)
+      .map((card) => ({ ...card, id: Math.random() }))
+
+    setChosenCards(cardImages1)
+    setGameOver(false)
+    setCountdown(0)
+    setIsCount(true)
+    setCards(shuffledCards)
+    setTurns(0)
+    setHideButton(true)
+    setIsWin(false)
+  }
+  const shuffleCards2 = () => {
+    const shuffledCards = [...cardImages2, ...cardImages2]
+      .sort(() => Math.random() - 0.5)
+      .map((card) => ({ ...card, id: Math.random() }))
+
+    setChosenCards(cardImages2)
     setGameOver(false)
     setCountdown(0)
     setIsCount(true)
@@ -48,7 +115,7 @@ function App() {
 
     setChosenNumber(1)
     shuffleCards()
-    setCountdown(100)
+    setCountdown(40)
   }
 
 
@@ -56,8 +123,8 @@ function App() {
   const sixBySix = () => {
 
     setChosenNumber(2)
-    shuffleCards()
-    setCountdown(200)
+    shuffleCards1()
+    setCountdown(100)
   }
 
 
@@ -65,7 +132,7 @@ function App() {
   const sixByFour = () => {
 
     setChosenNumber(3)
-    shuffleCards()
+    shuffleCards2()
     setCountdown(150)
   }
 
@@ -89,7 +156,7 @@ function App() {
           })
         })
         setMatchQuantity(prevQuantity => prevQuantity + 1)
-        if (matchQuantity === cardImages.length - 1) {
+        if (matchQuantity === chosenCards.length - 1) {
           setIsWin(true)
           setCountdown(-1)
           setIsCount(false)
@@ -129,15 +196,27 @@ function App() {
     setDisabled(false)
   }
   return (
-    <div className="App mx-auto">
+    <div className="App mx-auto my-20">
       <div className="space-y-5">
         <div className="flex justify-center ">
-          <h1 className="text-white bg-red-500 p-5 rounded-lg font-bold text-4xl my-10 text-center">Match Game</h1>
+          <h1 className="text-white bg-red-500 p-5 rounded-lg font-bold text-4xl text-center">Match Game</h1>
         </div>
         <div className={`${hideButton ? 'hidden' : 'block'} space-x-10 flex justify-center`}>
-          <button onClick={fourByFour} className={` text-white hover:text-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>4x4 100sec</button>
-          <button onClick={sixBySix} className={` text-white hover:text-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>6x6 200sec</button>
-          <button onClick={sixByFour} className={` text-white hover:text-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>6x4 150sec</button>
+          <button
+            onClick={fourByFour}
+            className={` text-white hover:text-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>
+            4x4 40sec
+          </button>
+          <button
+            onClick={sixBySix}
+            className={` text-white hover:text-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>
+            6x6 75sec
+          </button>
+          <button
+            onClick={sixByFour}
+            className={` text-white hover:text-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>
+            6x6 100sec
+          </button>
         </div>
       </div>
       <div className={`${isCount ? 'flex' : 'hidden'} justify-center`}>
@@ -151,7 +230,7 @@ function App() {
           You Win
         </div>
       </div>
-      <div className={`${chosenNumber === 1 ? 'grid-cols-4 px-48' : chosenNumber === 2 ? 'grid-cols-5 px-48' : chosenNumber === 3 ? 'grid-cols-6 px-32' : 'hidden'} container mt-10  mx-auto place-items-center grid grid-cols-4 gap-5`}>
+      <div className={`${chosenNumber === 1 ? 'grid-cols-4 px-48' : chosenNumber === 2 ? 'grid-cols-6 px-24' : chosenNumber === 3 ? 'grid-cols-6 px-24' : 'hidden'} container mt-10  mx-auto place-items-center grid grid-cols-4 gap-5`}>
         {cards.map((card) => (
           <Card
             key={card.id}
@@ -162,6 +241,8 @@ function App() {
           />
         ))}
       </div>
+
+
     </div>
   );
 }
