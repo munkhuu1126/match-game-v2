@@ -9,6 +9,8 @@ const cardImages = [
   { "src": "/img/eth.png", matched: false },
   { "src": "/img/mongolnft.jpeg", matched: false },
   { "src": "/img/bitcoin.png", matched: false },
+  { "src": "/img/maker.png", matched: false },
+  { "src": "/img/apecoin.png", matched: false },
 ]
 const cardImages1 = [
   { "src": "/img/ihc.png", matched: false },
@@ -123,8 +125,8 @@ function App() {
   const sixBySix = () => {
 
     setChosenNumber(2)
-    shuffleCards1()
-    setCountdown(100)
+    shuffleCards2()
+    setCountdown(150)
   }
 
 
@@ -132,8 +134,8 @@ function App() {
   const sixByFour = () => {
 
     setChosenNumber(3)
-    shuffleCards2()
-    setCountdown(150)
+    shuffleCards1()
+    setCountdown(100)
   }
 
   //handle choice
