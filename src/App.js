@@ -64,7 +64,8 @@ function App() {
   const [isCount, setIsCount] = useState(false) //show countdown
   const [gameOver, setGameOver] = useState(false) // condition for when a player loses the game
   const [isWin, setIsWin] = useState(false) //condition for when a player wins the game
-  const [chosenCards, setChosenCards] = useState([])
+  const [chosenCards, setChosenCards] = useState(0)
+
 
 
   //shuffled cards
@@ -114,28 +115,28 @@ function App() {
 
   //4x4
   const fourByFour = () => {
-
+    setMatchQuantity(0)
     setChosenNumber(1)
     shuffleCards()
-    setCountdown(40)
+    setCountdown(70)
   }
 
 
   //6x6
   const sixBySix = () => {
-
+    setMatchQuantity(0)
     setChosenNumber(2)
     shuffleCards2()
-    setCountdown(150)
+    setCountdown(200)
   }
 
 
   //6x4
   const sixByFour = () => {
-
+    setMatchQuantity(0)
     setChosenNumber(3)
     shuffleCards1()
-    setCountdown(100)
+    setCountdown(150)
   }
 
   //handle choice
@@ -158,18 +159,19 @@ function App() {
           })
         })
         setMatchQuantity(prevQuantity => prevQuantity + 1)
+        console.log(matchQuantity);
         if (matchQuantity === chosenCards.length - 1) {
           setIsWin(true)
           setCountdown(-1)
           setIsCount(false)
-          setMatchQuantity(0)
+
           setTimeout(() => { setHideButton(false) }, 3000)
 
         }
         resetTurn()
       }
       else {
-        setTimeout(() => resetTurn(), 500)
+        setTimeout(() => resetTurn(), 400)
 
       }
     }
@@ -206,18 +208,18 @@ function App() {
         <div className={`${hideButton ? 'hidden' : 'block'} space-x-10 flex justify-center`}>
           <button
             onClick={fourByFour}
-            className={` text-white hover:text-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>
-            4x4 40sec
+            className={` text-white hover:text-black bg-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>
+            4x4 70sec
           </button>
           <button
             onClick={sixBySix}
-            className={` text-white hover:text-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>
-            6x6 150sec
+            className={` text-white hover:text-black bg-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>
+            6x6 200sec
           </button>
           <button
             onClick={sixByFour}
-            className={` text-white hover:text-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>
-            6x4 100sec
+            className={` text-white hover:text-black bg-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>
+            6x4 150sec
           </button>
         </div>
       </div>
@@ -231,6 +233,10 @@ function App() {
         <div className="bg-black px-10 py-3 my-4 rounded-lg">
           You Win
         </div>
+
+      </div>
+      <div className={`${isWin ? 'flex' : 'hidden'} justify-center text-white text-4xl `}>
+        <div className='bg-black px-10 py-3 my-4 rounded-lg'>Total turns: {turns}</div>
       </div>
       <div className={`${chosenNumber === 1 ? 'grid-cols-4 px-96' : chosenNumber === 2 ? 'grid-cols-6 px-72' : chosenNumber === 3 ? 'grid-cols-6 px-72' : 'hidden'} container mt-10  mx-auto place-items-center grid grid-cols-4 gap-5`}>
         {cards.map((card) => (
