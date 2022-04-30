@@ -203,7 +203,10 @@ function App() {
     <div className="App mx-auto min-h-[100vh]">
       <div className="space-y-5">
         <div className="flex justify-center mt-5 ">
-          <h1 className="text-white bg-red-500 p-5 rounded-lg font-bold text-4xl text-center">Token Matching Game</h1>
+          <h1 className="text-white p-5 rounded-lg font-bold text-4xl text-center"
+            style={{ backgroundImage: `url(/img/background.png)`, backgroundSize: 'cover' }}>
+            Ой Санамжаа Сорьё
+          </h1>
         </div>
         <div className={`${hideButton ? 'hidden' : 'block'} space-x-10 flex justify-center`}>
           <button
