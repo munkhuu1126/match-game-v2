@@ -212,15 +212,16 @@ function App() {
             4x4 70sec
           </button>
           <button
-            onClick={sixBySix}
-            className={` text-white hover:text-black bg-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>
-            6x6 200sec
-          </button>
-          <button
             onClick={sixByFour}
             className={` text-white hover:text-black bg-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>
             6x4 150sec
           </button>
+          <button
+            onClick={sixBySix}
+            className={` text-white hover:text-black bg-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>
+            6x6 200sec
+          </button>
+
         </div>
       </div>
       <div className={`${isCount ? 'flex' : 'hidden'} justify-center`}>
