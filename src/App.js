@@ -127,7 +127,7 @@ function App() {
     setMatchQuantity(0)
     setChosenNumber(2)
     shuffleCards2()
-    setCountdown(200)
+    setCountdown(170)
   }
 
 
@@ -136,7 +136,7 @@ function App() {
     setMatchQuantity(0)
     setChosenNumber(3)
     shuffleCards1()
-    setCountdown(150)
+    setCountdown(130)
   }
 
   //handle choice
@@ -217,12 +217,12 @@ function App() {
           <button
             onClick={sixByFour}
             className={` text-white hover:text-black bg-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>
-            6x4 150sec
+            6x4 130sec
           </button>
           <button
             onClick={sixBySix}
             className={` text-white hover:text-black bg-black hover:bg-white transition ease-in duration-200 rounded-md text-2xl border-4 p-2 border-white`}>
-            6x6 200sec
+            6x6 170sec
           </button>
 
         </div>
